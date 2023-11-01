@@ -96,12 +96,12 @@
 ```json
 {  
     "result": "success",  
-    "user_id": user.id,
-    "username": username,  
-    "access_token": access_token,
-    "csrf_token": csrf_token,  
-    "refresh_token": refresh_token,
-    "csrf_refresh_token": csrf_refresh_token,  
+    "user_id": "user id",
+    "username": "username",  
+    "access_token": "access token",
+    "csrf_token": "csrf token",  
+    "refresh_token": "refresh token",
+    "csrf_refresh_token": "csrf refresh token",  
     "message": "로그인 성공"  
 }
 ```
