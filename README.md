@@ -143,7 +143,7 @@
 def test_signup(signup_data, login_data):
     resp = create_user(signup_data)
 
-	# 검증
+    # 검증
     assert resp.status_code == 200
     assert resp.json()['result'] == 'success'
 ```
@@ -157,7 +157,7 @@ def test_signup(signup_data, login_data):
 def create_user(signup_data):
     endpoint = f'{BASE_URL}/members/forms'
 
-	# API 호출
+    # API 호출
     return requests.post(url=endpoint, json=signup_data)
 ```
 
@@ -175,7 +175,7 @@ def signup_data(login_data):
         "email": "pytest@test.com"
     }
 
-	# yield 키워드를 사용해 테스트가 끝나면 리소스를 삭제하는 로직 실행
+    # yield 키워드를 사용해 테스트가 끝나면 리소스를 삭제하는 로직 실행
     delete_user(login_data)
 ```
 
