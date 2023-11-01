@@ -138,14 +138,47 @@
 - 테스트 코드의 요소를 Test, Hook, Fixture로 나눔
 
 #### 4.3.1. Test
+
+```python
+def test_signup(signup_data, login_data):
+    resp = create_user(signup_data)
+
+	# 검증
+    assert resp.status_code == 200
+    assert resp.json()['result'] == 'success'
+```
+
 - 요청에 대한 응답을 검증하는 코드
 - Hook 함수를 호출하고, Status Code, Response Message를 통해 Pass 여부를 검증
 
 #### 4.3.2. Hook
+
+```python
+def create_user(signup_data):
+    endpoint = f'{BASE_URL}/members/forms'
+
+	# API 호출
+    return requests.post(url=endpoint, json=signup_data)
+```
+
 - Test에 필요한 요청 정보 설정과 실제 API 호출 로직을 수행하는 코드
 - 헤더를 세팅하고, 토큰을 받아오는 등의 자주 사용하는 로직을 Hook으로 만들어 재사용성이 증대
 
 #### 4.3.3. Fixture
+
+```python
+@pytest.fixture
+def signup_data(login_data):
+    yield {
+        "username": "pytestuser",
+        "password": "password",
+        "email": "pytest@test.com"
+    }
+
+	# yield 키워드를 사용해 테스트가 끝나면 리소스를 삭제하는 로직 실행
+    delete_user(login_data)
+```
+
 - 테스트 코드를 조작하고, 테스트 환경을 성정하는 데 사용되는 도구
 - Python의 yield 키워드를 사용해 한 개의 단위 테스트가 끝나고 리소스를 삭제
 	- 단위 테스트 간 리소스 의존이 전혀 없도록 함
