@@ -3,8 +3,8 @@ from datetime import timedelta
 
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(os.path.join(BASE_DIR, 'app.db'))
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-SECRET_KEY = "dev"
+
+SECRET_KEY = "b'\xa2\xa4A\x84\x9f\x86\x82\x05G\xe2\xb2eD\x18p\x01'"
 
 
 # JWT secret key
@@ -13,7 +13,7 @@ JWT_SECRET_KEY = b'\xb4\xc4\x8b\xfbU\xc1\x8d\x1d\x82\xca\x08^\x0bO\x05I'
 # Type of algorithm
 JWT_DECODE_ALGORITHMS = ['HS256']
 # Location to check when validate JWT token
-JWT_TOKEN_LOCATION = ['cookies']
+JWT_TOKEN_LOCATION = ['headers']
 # JWT Access token expiration
 JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=30)
 # JWT refresh token expiration

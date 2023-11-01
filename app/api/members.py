@@ -4,6 +4,7 @@ from app.models import User
 from app import bcrypt, jwt_redis
 from flask_jwt_extended import *
 from datetime import datetime, timedelta, timezone
+from flask_wtf.csrf import generate_csrf
 
 
 bp = Blueprint('members', __name__, url_prefix='/members')
@@ -52,17 +53,15 @@ def login():
         }), 400
 
     access_token = create_access_token(identity=username)
-
+    refresh_token = create_refresh_token(identity=username)
     resp = jsonify({
         "result": "success",
         "user_id": user.id,
         "username": username,
         "access_token": access_token,
-        "csrf_token": get_csrf_token(access_token),
+        "csrf_token": generate_csrf_token(),
         "message": "로그인 성공"
     })
-
-    refresh_token = create_refresh_token(identity=username)
 
     set_access_cookies(response=resp, encoded_access_token=access_token)
     set_refresh_cookies(response=resp, encoded_refresh_token=refresh_token)
@@ -152,7 +151,7 @@ def refresh():
 
 
 # 아이디 중복 체크
-@bp.route('/validation', methods=['post'])
+@bp.route('/validation', methods=['POST'])
 def validate():
     username = request.get_json()['username']
 
@@ -166,3 +165,5 @@ def validate():
         })
 
 
+def generate_csrf_token():
+    return generate_csrf()

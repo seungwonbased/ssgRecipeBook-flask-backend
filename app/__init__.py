@@ -10,8 +10,8 @@ import os
 
 
 """
-    데이터베이스 객체가 생성될 때 이 네이밍 규칙이 적용됨
-    테이블, 제약 조건 등을 생성할 때 개발자가 일일이 이름을 정의할 필요가 없어짐
+데이터베이스 객체가 생성될 때 이 네이밍 규칙이 적용됨
+테이블, 제약 조건 등을 생성할 때 개발자가 일일이 이름을 정의할 필요가 없어짐
 """
 
 naming_convention = {
@@ -35,19 +35,19 @@ def create_app():
     app.config.from_envvar('APP_CONFIG_FILE')
 
     """
-        Application Factory Pattern     
+    Application Factory Pattern     
     """
 
-    CORS(app)
+    CORS(app, resources={r'*': {'origins': 'http://10.0.0.4'}})
     db.init_app(app)
     bcrypt.init_app(app)
     jwt.init_app(app)
 
     """
-        DB
-        - Development, Staging 환경: SQlite
-        - Production 환경: PostgresSQL
-        환경에 맞는 DB를 자동으로 플러그
+    DB
+    - Development, Staging 환경: SQlite
+    - Production 환경: PostgresSQL
+    환경에 맞는 DB를 자동으로 플러그
     """
     if app.config['SQLALCHEMY_DATABASE_URI'].startswith('sqlite'):
         migrate.init_app(app, db, render_as_batch=True)
@@ -55,7 +55,7 @@ def create_app():
         migrate.init_app(app, db)
 
     """
-        Blueprints
+    Blueprints
     """
 
     from .api import posts, members

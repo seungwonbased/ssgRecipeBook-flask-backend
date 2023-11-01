@@ -61,6 +61,7 @@ def get_post(post_id):
                 "id": comment.id,
                 "content": comment.content,
                 "user_id": comment.user_id,
+                "username": get_username_hook(comment.user_id),
                 "create_date": comment.create_date,
                 "modify_date": comment.modify_date,
                 "like": len(comment.liker)
