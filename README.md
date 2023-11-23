@@ -1,7 +1,7 @@
 # 한끼얼마 Backend Flask Application Report
 ## 1. 🥙 한끼얼마 💰
 ### 1.1 개발 인원
-  
+ 
 - 1인 개발 (배승원)
  
 ### 1.2. 기술 스택 및 환경
