@@ -38,7 +38,6 @@ def create_app():
     Application Factory Pattern     
     """
 
-    # CORS(app, resources={r'*': {'origins': 'http://10.0.0.4'}})
     CORS(app)
     db.init_app(app)
     bcrypt.init_app(app)
