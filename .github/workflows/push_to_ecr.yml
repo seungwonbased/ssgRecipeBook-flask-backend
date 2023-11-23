@@ -62,7 +62,7 @@ jobs:
       env: 
         GITHUB_TOKEN: ${{ secrets.PAT }}
       run: |
-        cd eyestalk-manifest
+        cd hanggi-argocd
         git config --global user.email "21storeo@gmail.com"
         git config --global user.name "seungwonbased"
         git config --global github.token ${{ secrets.PAT }}
