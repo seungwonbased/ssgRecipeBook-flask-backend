@@ -164,7 +164,7 @@ def test_create_comment(signup_data, login_data, post_data, comment_data):
     assert resp.status_code == 200
     assert resp.json()['result'] == 'success'
 
-
+   
 # 자신의 댓글 좋아요 실패 테스트
 def test_like_own_comment_failure(signup_data, login_data, post_data, comment_data):
     resp = like_own_comment(signup_data, login_data, post_data, comment_data)
